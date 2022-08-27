@@ -5,25 +5,25 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Phone</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css"
         integrity="sha512-1sCRPdkRXhBV2PBLUdRb4tMg1w2YPf37qatUFeS7zlBy7jJI8Lf4VHwWfZZfpXtYSLy85pkm9GaYVYMfw5BC1A=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css"
         integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
+    <link rel="stylesheet" href="../../assets/css/style.css">
 </head>
 
 <body>
     <header>
-        <div class="container">
-            <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container bg-info">
+            <nav class="navbar navbar-expand-lg navbar-dark">
                 <a class="navbar-brand" href="#">Phone</a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse"
                     data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
                     aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
-
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav mr-auto">
                         <li class="nav-item active">
@@ -36,84 +36,83 @@
             </nav>
         </div>
     </header>
-    <section class="product pb-5">
-        <div class="container">
+    <section class="product">
+        <div class="container bg-light p-4 h-100">
             <div class="header py-2 text-right">
                 <div class="btn-group">
-                    <button class="btn btn-outline-secondary dropdown-toggle" type="button" data-toggle="dropdown"
-                        aria-expanded="false">
-                        Loại
-                    </button>
-                    <div class="dropdown-menu">
-                        <button class="dropdown-item" type="button">IPhone</button>
-                        <button class="dropdown-item" type="button">Samsung</button>
-                    </div>
+                    <select class="form-control" id="loaiSP">
+                        <option value="All">Tất cả</option>
+                        <option value="IPhone">IPhone</option>
+                        <option value="Samsung">Samsung</option>
+                    </select>
                 </div>
-                <button type="button" class="btn " data-toggle="modal" data-target="#exampleModal">
+                <button type="button" class="cart btn shadow-none text-danger position-relative" data-toggle="modal" data-target="#Modal1">
                     <i class="fa-solid fa-cart-shopping" style="font-size:2rem;"></i>
+                    <span id="amountCart" class="d-none">0</span>
                 </button>
             </div>
-            <div class="row">
-                <div class="col">
-                    <div class="card" style="width: 18rem;">
-                        <div class="card-body">
-                            <img src="https://cdn.tgdd.vn/Products/Images/42/114115/iphone-x-64gb-hh-600x600.jpg"
-                                class="card-img-top" alt="...">
-                            <h5 class="card-title my-2">iphoneX</h5>
-                            <p class="card-text text-muted mb-1">Thiết kế mang tính đột phá</p>
-                            <span class="border d-inline-block m-1 p-1">screen 68</span>
-                            <span class="border d-inline-block m-1 p-1">2 camera 12 MP</span>
-                            <span class="border d-inline-block m-1 p-1">7 MP</span>
-                            <h4 class="my-2 text-danger">$1000</h4>
-                            <div class="text-center">
-                                <button class="btn btn-warning">Mua ngay</button>
-                            </div>
-                        </div>
-
-                    </div>
-                </div>
+            <div id="listProducts" class="row">
             </div>
         </div>
     </section>
     <!-- Modal -->
-    <div class="modal  fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal  fade" id="Modal1" tabindex="-1" aria-labelledby="ModalLabel1" aria-hidden="true">
         <div class="modal-dialog modal-lg modal-dialog-centered">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Cart</h5>
+                    <h5 class="modal-title" id="ModalLabel1">Giỏ hàng</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
                 <div class="modal-body">
-                    <div class="list-group">
-                        <div class="list-group-item-action border-bottom p-3" aria-current="true">
-                            <div class="row text-center">
-                                <div class="col">Active</div>
-                                <div class="col">Much longer</div>
-                                <div class="col">Link</div>
-                                <div class="col">Much longer </div>
-                                <div class="col">Link</div>
-                            </div>
-                        </div>
-                        <div class="list-group-item-action border-bottom p-3" aria-current="true">
-                            <div class="row text-center">
-                                <div class="col">Active</div>
-                                <div class="col">Much longer dffdf</div>
-                                <div class="col">Link</div>
-                                <div class="col">Much longer dfdfd</div>
-                                <div class="col">Link</div>
-                            </div>
-                        </div>
+                    <div id="showCart" class="list-group">
+                    </div>
+                    <div class="pt-2 text-right">
+                        <span id="tongTien"></span>
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-danger">Thanh toán</button>
-                    <button type="button" class="btn btn-primary">Làm sạch</button>
+                    <button type="button" class="btn btn-danger" onclick="showOder(1)">Thanh toán</button>
+                    <button type="button" class="btn btn-primary" onclick="clearCardItem()">Xóa toàn bộ</button>
                 </div>
             </div>
         </div>
     </div>
+    <!-- Modal 2 -->
+    <div class="modal fade" id="Modal2" tabindex="-1" aria-labelledby="ModalLabel2" aria-hidden="true">
+        <div class="modal-dialog modal-lg modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="ModalLabel2">Đặt hàng</h5>
+                </div>
+                <div id="contentOder" class="modal-body p-5">
+                </div>
+                <div class="modal-footer justify-content-around">
+                    <button type="button" class="btn btn-danger" onclick="showInfoOder()">Đặt hàng ngay</button>
+                    <button type="button" class="btn btn-primary" onclick="showOder(0)">Hủy bỏ</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Modal 3 -->
+    <div class="modal" id="Modal3" tabindex="-1" aria-labelledby="#ModalLabel3" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="ModalLabel3">Thông tin đơn hàng</h5>
+            </div>
+            <div class="modal-body p-5">
+              <p class="border-bottom border-primary">Mã đơn hàng của bạn là: <span id="idOder" class="h6">000</span></p>
+              <p class="border-bottom border-primary">Đơn đặt hàng của bạn sẽ được giao cho bạn trong 3-5 ngày làm việc</p>
+              <p class="border-bottom border-primary">Bạn có thể thanh toán <span id="moneyPay" class="h6">$0</span> bằng thẻ hoặc bất kỳ phương thức giao dịch trực tuyến nào sau khi các sản phẩm đã được phân phối cho bạn</p>
+              <div class="d-flex pt-2 justify-content-center">
+                <button type="button" class="btn btn-info px-5" data-dismiss="modal">Okey</button>
+            </div>
+            </div> 
+          </div>
+        </div>
+      </div>
 
     <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"
         integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
@@ -124,6 +123,15 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.min.js"
         integrity="sha384-+sLIOodYLS7CIrQpBjl+C7nPvqq+FbNUBDunl/OZv93DB7Ln/533i8e/mZXLi/P+"
         crossorigin="anonymous"></script>
+
+     <!-- thư viện Axios -->
+     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+     <script src="../models/SanPham.js"></script>
+     <script src="../models/ListProduct.js"></script>
+     <script src="../models/Cart.js"></script>
+     <script src="../models/ListCart.js"></script>
+     <script src="../services/SanPhamService.js"></script>
+     <script src="../controllers/main.js"></script>
 </body>
 
 </html>

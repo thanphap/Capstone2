@@ -1,0 +1,43 @@
+header{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 10;
+}
+
+#amountCart{
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 20px;
+    height: 20px;
+    background-color: white;
+    border: 1px solid #dc3545;
+    border-radius: 50%;
+    font-size: 1em;
+    line-height: 15px;
+}
+
+.product{
+    position: relative;
+    height: 100vh;
+    padding-top: 3em;
+}
+
+.card{
+    overflow: hidden;
+    box-shadow: 0 7px 5px -5px rgba(0, 0, 0, 0.1);
+    transition: all .5s;
+}
+
+.card-info{
+    height: 0px;
+    opacity: 0;
+    transition: all .5s;
+}
+
+.card:hover .card-info{
+    height: auto;
+    opacity: 1;
+}
