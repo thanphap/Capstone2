@@ -1,5 +1,10 @@
 function ListProduct() {
     this.mangSP = [];
+
+    this.themSP = function (sp) {
+        this.mangSP.push(sp);
+    }
+
     this.timViTri = function (ma) {
         var viTri = -1;
         this.mangSP.map(function (sp, index) {
@@ -9,6 +14,21 @@ function ListProduct() {
         });
         return viTri;
     }
+
+    this.xoaSP = function (ma) {
+        var viTri = this.timViTri(ma);
+        if (viTri > -1) {
+            this.mangSP.splice(viTri, 1);
+        }
+    }
+
+    this.capnhapSP = function (id, sp) {
+        var viTri = this.timViTri(id);
+        if (viTri > -1) {
+            this.mangSP[viTri] = sp;
+        }
+    }
+
     this.timKiem = function (tuKhoa) {
         var mangTK = [];
         // var tuKhoaThuong = tuKhoa.toLowerCase();

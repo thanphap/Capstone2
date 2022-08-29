@@ -1,4 +1,4 @@
-var spService = new SanPhamService();
+var spService = new ManagerServive();
 var dssp = new ListProduct();
 var dscart = new ListCart();
 var checkAmount = 0;
@@ -22,9 +22,7 @@ function getLocalStorage() {
 getLocalStorage();
 
 function getProductList() {
-    spService.getProductList().then(function (result) {
-        // console.log(result);
-        // console.log(result.data);
+    spService.getPhoneList().then(function (result) {
         // print product
         showProduct(result.data);
         dssp.mangSP = result.data;
