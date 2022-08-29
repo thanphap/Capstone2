@@ -33,7 +33,6 @@ function showPhone(mangPhone) {
         `
     })
     document.querySelector("#tblDanhSachSP").innerHTML = content;
-    console.log(dssp.mangSP);
 }
 
 function addPhoneMain() {
