@@ -15,10 +15,11 @@ getPhone();
 
 function showPhone(mangPhone) {
     var content = "";
+    var stt = 1;
     mangPhone.map(function (phone) {
         content += `
             <tr>
-                <td>${phone.id}</td>
+                <td>${stt++}</td>
                 <td>${phone.name}</td>
                 <td>${phone.price}</td>
                 <td>
