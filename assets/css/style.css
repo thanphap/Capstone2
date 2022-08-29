@@ -41,3 +41,25 @@ header{
     height: auto;
     opacity: 1;
 }
+
+@media (max-width: 576px){
+    .productItem{
+        display: flex;
+        justify-content: center;
+        margin-bottom: 10px;
+    }
+    .card{
+        display: flex;
+        justify-content: center;
+        width: 300px;
+        height: auto;
+    }
+
+    #showCart .col{
+        padding-right: 5px;
+        padding-left: 5px;
+    }
+    .amountCard button{
+        padding: 0.175rem 0.25rem;
+    }
+}

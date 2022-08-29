@@ -23,8 +23,8 @@ getLocalStorage();
 
 function getProductList() {
     spService.getProductList().then(function (result) {
-        console.log(result);
-        console.log(result.data);
+        // console.log(result);
+        // console.log(result.data);
         // print product
         showProduct(result.data);
         dssp.mangSP = result.data;
@@ -39,7 +39,7 @@ function showProduct(mangSP) {
     var content = "";
     mangSP.map(function (sp) {
         content += `
-            <div class="col-3 p-2">
+            <div class="productItem col-12 col-sm-6 col-md-4 col-lg-3 p-2">
                 <div class="card">
                     <div class="card-body p-2">
                         <img src="${sp.img}" class="card-img-top" alt="...">
@@ -89,7 +89,7 @@ function showCart(mangCart) {
                         <img class="img-fluid" src="${sp.img}" alt="hinh anh">
                     </div>
                     <div class="col">${sp.name}</div>
-                    <div class="col">
+                    <div class="col amountCard">
                         ${btnAmount(sp.id, sp.amount)}
                     </div>
                     <div class="col">$${sp.tottalPrice}</div>
@@ -103,7 +103,7 @@ function showCart(mangCart) {
         totalAmount += sp.amount;
     });
     checkAmount = totalAmount;
-    console.log(totalAmount);
+    // console.log(totalAmount);
     getELE("showCart").innerHTML = content;
     getELE("tongTien").innerHTML = "Tổng tiền: $" + totalMoney;
     if (totalAmount > 0) {
