@@ -2,6 +2,7 @@ var spService = new ManagerServive();
 var dssp = new ListProduct();
 var dscart = new ListCart();
 var checkAmount = 0;
+var getStor = [];
 
 //getElementById("tenID")
 function getELE(id) {
@@ -14,18 +15,27 @@ function setLocalStorage() {
 
 function getLocalStorage() {
     if (localStorage.getItem("DSSPM") != undefined) {
-        dscart.mangCart = JSON.parse(localStorage.getItem("DSSPM"));
+        getStor = JSON.parse(localStorage.getItem("DSSPM"));
+        for (var i = 0; i < dssp.mangSP.length; i++) {
+            for (var j = 0; j < getStor.length; j++) {
+                if (getStor[j].id === dssp.mangSP[i].id) {
+                    dscart.addCart(getStor[j]);
+                }
+            }
+            
+        }
     }
     showCart(dscart.mangCart);
+    setLocalStorage();
 }
 
-getLocalStorage();
-
 function getProductList() {
-    spService.getPhoneList().then(function (result) {
+    spService.getPhoneList()
+    .then(function (result) {
         // print product
         showProduct(result.data);
         dssp.mangSP = result.data;
+        getLocalStorage();
     }).catch(function (error) {
         console.log(error);
     })
@@ -41,22 +51,23 @@ function showProduct(mangSP) {
                 <div class="card">
                     <div class="card-body p-2">
                         <img src="${sp.img}" class="card-img-top" alt="...">
-                        <h5 class="card-title my-2 text-center">${sp.name}</h5>
+                        <div class="position-relative">
+                            <h5 class="card-title my-2 text-center">${sp.name}</h5>
+                            <div class="card-info">
+                                <p class="card-text pt-2 mb-1 small">${sp.desc}</p>
+                                <div class="d-inline-block small">
+                                <span class="d-block">Màn hình: ${sp.screen}</span>
+                                <span class="d-block">Camera sau: ${sp.backCamera}</span>
+                                <span class="d-block">Camera trước: ${sp.frontCamera}</span>
+                            </div>
+                        </div>
+                        </div>
                         <div class="d-flex justify-content-around align-items-center">
                             <h4 class="my-2 text-danger">$${sp.price}</h4>
                             <div class="bt-change">
                                 ${btnBuy(sp.id)}
                             </div>
                         </div>
-                        <div class="card-info">
-                            <p class="card-text text-muted pt-2 mb-1 small">${sp.desc}</p>
-                            <div class="d-inline-block small">
-                            <span class="d-block">Màn hình: ${sp.screen}</span>
-                            <span class="d-block">Camera sau: ${sp.backCamera}</span>
-                            <span class="d-block">Camera trước: ${sp.frontCamera}</span>
-                            </div>
-                        </div>
-                        
                     </div>
 
                 </div>
